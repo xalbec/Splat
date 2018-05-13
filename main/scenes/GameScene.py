@@ -1,11 +1,13 @@
 import pygame
 from main.scenes.SceneBase import SceneBase
 from main.gameobjects.Splat import Splat
+from main.util.Quadtree import Quadtree
 
 
 class GameScene(SceneBase):
 
     game_objects = []
+    obj_tree = None
 
     # splat is created here because he is super important to the scene
     splat = Splat()
@@ -16,6 +18,8 @@ class GameScene(SceneBase):
         super().__init__()
 
     def setup(self, screen):
+
+        self.obj_tree = Quadtree(0, 0, screen.get_width(), screen.get_height)
         self.splat.pos = (0, screen.get_height() - self.splat.get_rect().h)
 
     # Doodle Zone
@@ -31,4 +35,6 @@ class GameScene(SceneBase):
 
     # Logic
     def update(self):
-        return
+
+        for obj in self.game_objects:
+            self.obj_tree.insert(obj)
