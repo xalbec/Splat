@@ -9,7 +9,7 @@ class Quadtree:
         self.NW = None
         self.SE = None
         self.SW = None
-        self.blocks = []
+        self.objects = []
         self.cap = 4
         self.is_divided = False
 
@@ -19,9 +19,9 @@ class Quadtree:
 
             if not self.is_divided:
 
-                if len(self.blocks) < self.cap:
+                if len(self.objects) < self.cap:
 
-                    self.blocks.append(block)
+                    self.objects.append(block)
 
                 else:
 
@@ -40,13 +40,13 @@ class Quadtree:
         self.SE = Quadtree(self.rect.x + self.rect.w/2, self.rect.y + self.rect.h/2, self.rect.w/2, self.rect.h/2)
         self.SW = Quadtree(self.rect.x, self.rect.y + self.rect.w/2, self.rect.w/2, self.rect.h/2)
 
-        for block in self.blocks:
-            self.NE.insert(block)
-            self.NW.insert(block)
-            self.SE.insert(block)
-            self.SW.insert(block)
+        for obj in self.objects:
+            self.NE.insert(obj)
+            self.NW.insert(obj)
+            self.SE.insert(obj)
+            self.SW.insert(obj)
 
-        self.blocks = []
+        self.objects = []
 
     def query(self, rect):
 
@@ -59,7 +59,7 @@ class Quadtree:
                 found.append(self.SE.query(rect))
                 found.append(self.SW.query(rect))
             else:
-                for block in self.blocks:
-                    if block.rect.colliderect(rect):
-                        found.append(block)
+                for obj in self.objects:
+                    if obj.rect.colliderect(rect):
+                        found.append(obj)
         return found
