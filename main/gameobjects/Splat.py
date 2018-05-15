@@ -10,6 +10,7 @@ class Splat(GameObjectBase):
         self.pos = pos
         self.vel = (0, 0)
         self.color = [255, 255, 255]
+        self.rect = pygame.Rect(pos[0], pos[1], self.radius*2, self.radius*2)
 
     def render(self, screen):
         pygame.draw.arc(screen, self.color, self.get_rect(), 0, math.pi*2)
