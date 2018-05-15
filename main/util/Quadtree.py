@@ -73,7 +73,7 @@ class Quadtree:
         return found
 
     def render(self, screen):
-        pygame.draw.rect(screen, [255, 255, 255], self.rect)
+        pygame.draw.rect(screen, [255, 255, 255], self.rect, 4)
         if self.is_divided:
             self.NE.render(screen)
             self.NW.render(screen)

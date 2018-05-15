@@ -19,12 +19,14 @@ class GameScene(SceneBase):
 
     def setup(self, screen):
 
-        self.obj_tree = Quadtree(0, 0, screen.get_width(), screen.get_height)
+        self.obj_tree = Quadtree(0, 0, screen.get_width(), screen.get_height())
         self.splat.pos = (0, screen.get_height() - self.splat.get_rect().h)
 
     # Doodle Zone
     def render(self, screen):
         screen.fill([0, 0, 0])
+
+        self.obj_tree.render(screen)
 
         for obj in self.game_objects:
             obj.render(screen)
