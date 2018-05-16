@@ -23,7 +23,6 @@ class GameScene(SceneBase):
 
         self.obj_tree = Quadtree(0, 0, screen.get_width(), screen.get_height())
         self.splat.pos = (0, screen.get_height() - self.splat.get_rect().h)
-        self.game_objects.append(Grass(0, 0))
 
     # Doodle Zone
     def render(self, screen):
