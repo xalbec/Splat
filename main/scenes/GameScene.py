@@ -1,7 +1,9 @@
 import pygame
 from main.scenes.SceneBase import SceneBase
 from main.gameobjects.Splat import Splat
+from main.gameobjects.GameObjectBase import GameObjectBase
 from main.util.Quadtree import Quadtree
+from main.gameobjects.blocks.Grass import Grass
 
 
 class GameScene(SceneBase):
@@ -21,6 +23,7 @@ class GameScene(SceneBase):
 
         self.obj_tree = Quadtree(0, 0, screen.get_width(), screen.get_height())
         self.splat.pos = (0, screen.get_height() - self.splat.get_rect().h)
+        self.game_objects.append(Grass(0, 0))
 
     # Doodle Zone
     def render(self, screen):
